@@ -76,7 +76,10 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(process.env.PORT || 4000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
+
 server.on('listening',
     function onListening() {
         var addr = server.address();
